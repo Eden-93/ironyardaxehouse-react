@@ -8,19 +8,19 @@ class Directory extends Component {
                 {
                     id: 0,
                     name: 'Birthday Parties',
-                    image: '../assets/image/birthday parties.JPG',
+                    image: '/public/assets/images/birthday_parties.JPG',
                     description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum ea autem quibusdam eius itaque quis praesentium voluptates nulla. Aut consectetur et modi corrupti consequatur! Et, voluptatum placeat! Eius, repellat fuga."
                 },
                 {
                     id: 1,
                     name: 'Festivals',
-                    image: 'assets/image/Beer Bournon sceenshot.png',
+                    image: '/public/assets/images/Beerbournonsceenshot.png',
                     description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum ea autem quibusdam eius itaque quis praesentium voluptates nulla. Aut consectetur et modi corrupti consequatur! Et, voluptatum placeat! Eius, repellat fuga."
                 },
                 {
                     id: 2,
                     name: 'Work Events',
-                    image: '../public../assets/image/treinanniversary.JPG',
+                    image: '../../public/assets/image/treinanniversary.JPG',
                     description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum ea autem quibusdam eius itaque quis praesentium voluptates nulla. Aut consectetur et modi corrupti consequatur! Et, voluptatum placeat! Eius, repellat fuga."
                 }
             ]
