@@ -1,39 +1,55 @@
 import React, { Component } from 'react';
+import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 
 class Directory extends Component {
     constructor(props) {
         super(props);
+        this.myRef= React.createRef();
         this.state = {
-            events: [
-                {
-                    id: 0,
-                    name: 'Birthday Parties',
-                    image: '/public/assets/images/birthday_parties.JPG',
-                    description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum ea autem quibusdam eius itaque quis praesentium voluptates nulla. Aut consectetur et modi corrupti consequatur! Et, voluptatum placeat! Eius, repellat fuga."
-                },
-                {
-                    id: 1,
-                    name: 'Festivals',
-                    image: '/public/assets/images/Beerbournonsceenshot.png',
-                    description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum ea autem quibusdam eius itaque quis praesentium voluptates nulla. Aut consectetur et modi corrupti consequatur! Et, voluptatum placeat! Eius, repellat fuga."
-                },
-                {
-                    id: 2,
-                    name: 'Work Events',
-                    image: '../../public/assets/image/treinanniversary.JPG',
-                    description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum ea autem quibusdam eius itaque quis praesentium voluptates nulla. Aut consectetur et modi corrupti consequatur! Et, voluptatum placeat! Eius, repellat fuga."
-                }
-            ]
-        };
+            selectedEvent: null
+          };
+    }
+
+    onEventSelect(event) {
+        //this.scrollInto();
+        this.setState({selectedEvent: event});
+        this.myRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+    }
+
+    scrollInto(event) {
+        if (this.myRef.current) {
+            window.scrollTo(0, this.myRef.current.offsetTop)
+        }
+    }
+
+    renderSelectedEvent(event) {
+        if (event) {
+            return (
+                <Card ref={this.myRef}>
+                    <CardImg top src={event.image} alt={event.name}/>
+                    <CardBody>
+                        <CardTitle>{event.name}</CardTitle>
+                        <CardText>{event.description}</CardText>
+                    </CardBody>
+                </Card>
+            )
+        }
+        return <div />;
     }
 
     render() {
-        const directory = this.state.events.map(event => {
+        const directory = this.props.events.map(event => {
             return (
-                <div key={event.id} className="col">
-                    <img src={event.image} alt={event.name} />
-                    <h2>{event.name}</h2>
-                    <p>{event.description}</p>
+                <div key={event.id} className="col-md-5 m-1">
+                    <Card onClick={() => this.onEventSelect(event)}>
+                        <CardImg width="100%" src={event.image} alt={event.name} />
+                        <CardImgOverlay>
+                        <CardTitle>{event.name}</CardTitle>
+                        </CardImgOverlay>
+                    </Card>
                 </div>
             );
         });
@@ -42,6 +58,11 @@ class Directory extends Component {
             <div className="container">
                 <div className="row">
                     {directory}
+                </div>
+                <div className="row">
+                    <div className="col-md-5 m-1">
+                        {this.renderSelectedEvent(this.state.selectedEvent)}
+                    </div>
                 </div>
             </div>
         );
