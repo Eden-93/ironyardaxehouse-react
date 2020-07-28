@@ -20,8 +20,10 @@ class EventInfo extends Component {
     render(){
         if (this.props.event) {
             return (
-            <div className="row" >
-                {this.renderEvent(this.props.event)}
+            <div className="container" >
+                <div className="row" >
+                    {this.renderEvent(this.props.event)}
+                </div>
             </div>
             );
         }
